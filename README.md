@@ -1,1 +1,1 @@
-# experimental_robotics_2
+# Assignment 2 of the Experimental Robotics course (MSc Robotics Engineering, Unige)
