@@ -41,7 +41,7 @@
 erl2::ErlOracle hint1;
 ///< Global variable used for collecting hint2 value.
 erl2::ErlOracle hint2;
-///< Global variable used for collecting hint2 value.
+///< Global variable used for collecting hint3 value.
 erl2::ErlOracle hint3;
 
 ///< Initializing ROS Service 'hint_loader_service' client variable. 
