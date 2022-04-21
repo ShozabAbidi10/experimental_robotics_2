@@ -7,9 +7,9 @@ Building upon this architectural theme, the project contains some environment si
 
 Similar to the previous project the deduced hypotheses has to be consistent and correct which means it has to be based on three different types of hints and its ID needs to match the ID of the correct hypotheses. The hnts are of following types:
 
-who: Robot can find a name of a person as a hint which can be a killer e.g: Prof. Plum.
-what: Robot can find a name of a weapon as a hint which killer might have used e.g: Dagger.
-where: Robot can find a name of random place where the crime might have been committed e.g: Hall.
+1. who: Robot can find a name of a person as a hint which can be a killer e.g: Prof. Plum.
+2. what: Robot can find a name of a weapon as a hint which killer might have used e.g: Dagger.
+3. where: Robot can find a name of random place where the crime might have been committed e.g: Hall.
 
 Statement of a consistent hypothesis will be something like this: “Prof. Plum with the Dagger in the Hall”. Incase the deduced hypotheses is wrong then the robot will visit the rooms again for new hints until it forms a consistent hypotheses. Similar to the previous project, ARMOR package has been used to deduced the hypothesis which is developed by researchers at University of Genova. ARMOR is versatile management system that can handle single or multiple-ontology archetectures under ROS. Please find more details regarding ARMOR from here: https://github.com/EmaroLab/armor
 
