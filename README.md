@@ -5,7 +5,7 @@ Building upon this architectural theme, the project contains some environment si
 
 ![environment](https://user-images.githubusercontent.com/61094879/164345293-a30c2c7d-5e29-4571-8ec2-f61e762f1b93.png)
 
-Similar to the previous project the deduced hypotheses has to be consistent and correct which means it has to be based on three different types of hints and its ID needs to match the ID of the correct hypotheses. The hnts are of following types:
+Besides this there are small walls in the simulation environment which can been seen in the above picture. These walls restraint the robot to reach the points coordinates with its mobile base, therefore robot plan its arm motion to placed it over the point coordinates in order to collect the hints. Similar to the previous project the deduced hypotheses has to be consistent and correct which means it has to be based on three different types of hints and its ID needs to match the ID of the correct hypotheses. The hnts are of following types:
 
 1. who: Robot can find a name of a person as a hint which can be a killer e.g: Prof. Plum.
 2. what: Robot can find a name of a weapon as a hint which killer might have used e.g: Dagger.
@@ -13,7 +13,7 @@ Similar to the previous project the deduced hypotheses has to be consistent and 
 
 Statement of a consistent hypothesis will be something like this: “Prof. Plum with the Dagger in the Hall”. Incase the deduced hypotheses is wrong then the robot will visit the rooms again for new hints until it forms a consistent hypotheses. Similar to the previous project, ARMOR package has been used to deduced the hypothesis which is developed by researchers at University of Genova. ARMOR is versatile management system that can handle single or multiple-ontology archetectures under ROS. Please find more details regarding ARMOR from here: https://github.com/EmaroLab/armor
 
-
+In addition to this, we have also used ROSPlan to plan the behaviour of the our robot. ROSPlan is a framework which provides collection of tools for AI Planning in a ROS system. Its variety of nodes encapsulate planning, problem generation, and plan execution in itself. In order to used ROSPlan, problem statement of the project that we diccussed above has been translated into PDDL problem files which contains the required objects like 'robot' and 'waypoint', initial condition and goals which describe the final desire state of the environment and domain file which contains the actions that robot can opt for in order to achieve the goal like 'goto_waypoint'. At the start of the simulation we execute the planning loop services of the ROSPlan which includes problem generation, planning, parsing and dispatching. During the execution its very likely that the robot will fail to complete the goals and to overcome this, the archieture of the project is developed in the way that can sense the failure duiring execution and goes into replaning. After replanning, the robot starts the execution of the new plan and it keeps doing it until the goals are achieved/
 
 ## Project Installation:
 
