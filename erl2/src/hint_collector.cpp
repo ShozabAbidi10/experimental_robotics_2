@@ -15,7 +15,7 @@
 * /oracle_hint
 *  
 * Description :
-*	This function provides the '/request_hint_collector' service which collects and store the hints from the '/oracle_hint' topic. 
+*	This node provides the '/request_hint_collector' service which collects and store the hints from the '/oracle_hint' topic. 
 * Once three hints are collected, it checks their consistency and load them in the 'ARMOR' ontology knowlegde base. It start the
 * ontology reasoner, and check if the deduced hypothesis is complete and correct. If the hypothesis is inconsistent, incomplete or
 * incorrect then it return 'false' otherwise it return 'true'.
