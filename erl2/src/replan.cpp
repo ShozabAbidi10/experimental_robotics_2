@@ -15,7 +15,7 @@
 *  
 * Description :
 * 
-*	This function provides the '/request_replan' service which signal the 'replan_sub' node to start the replanning process by publishing
+* This node provides the '/request_replan' service which signal the 'replan_sub' node to start the replanning process by publishing
 * the string "replan" in the topic 'replan'. 
 */
 
