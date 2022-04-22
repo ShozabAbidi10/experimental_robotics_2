@@ -13,7 +13,7 @@ Besides this there are small walls in the simulation environment which can been 
 
 Statement of a consistent hypothesis will be something like this: “Prof. Plum with the Dagger in the Hall”. Incase the deduced hypotheses is wrong then the robot will visit the rooms again for new hints until it forms a consistent hypotheses. Similar to the previous project, ARMOR package has been used to deduced the hypothesis which is developed by researchers at University of Genova. ARMOR is versatile management system that can handle single or multiple-ontology archetectures under ROS. Please find more details regarding ARMOR from here: https://github.com/EmaroLab/armor
 
-In addition to this, we have also used ROSPlan to plan the behaviour of the our robot. ROSPlan is a framework which provides collection of tools for AI Planning in a ROS system. Its variety of nodes encapsulate planning, problem generation, and plan execution in itself. In order to used ROSPlan, problem statement of the project that we diccussed above has been translated into PDDL problem files which contains the required objects like 'robot' and 'waypoint', initial condition and goals which describe the final desire state of the environment and domain file which contains the actions that robot can opt for in order to achieve the goal like 'goto_waypoint'. At the start of the simulation we execute the planning loop services of the ROSPlan which includes problem generation, planning, parsing and dispatching. During the execution its very likely that the robot will fail to complete the goals and to overcome this, the archieture of the project is developed in the way that can sense the failure duiring execution and goes into replaning. After replanning, the robot starts the execution of the new plan and it keeps doing it until the goals are achieved/
+In addition to this, we have also used ROSPlan to plan the behaviour of the our robot. ROSPlan is a framework which provides collection of tools for AI Planning in a ROS system. Its variety of nodes encapsulate planning, problem generation, and plan execution in itself. In order to used ROSPlan, problem statement of the project that we diccussed above has been translated into PDDL problem file which contains the required objects like 'robot' and 'waypoint', initial condition and goals which describe the final desire state of the environment and domain file which contains the actions that robot can opt for in order to achieve the goal like 'goto_waypoint'. At the start of the simulation we execute the planning loop services of the ROSPlan which includes problem generation, planning, parsing and dispatching. During the execution of the simulation its very likely that the robot will fail to complete the goals in the first attempt. Therefore, the archieture of the project is developed in the way that can sense the failure duiring execution and goes into replaning. After replanning, the robot starts the execution of the new plan and it keeps doing it until the goals are achieved.
 
 ## Project Installation:
 
@@ -25,14 +25,13 @@ For installing ARMOR package please follow the instructions available in this re
 2. To successfully deploy and build the package run the following command.
 ```
 catkin_make
-cd devel/
-source setup.bash
+source devel/setup.bash
 ```
 3. In order to use the python modules contained in armor_py_api package run the following command to add the path of the armor python modules to your PYTHONPATH environmental variable.
 ``` 
 export PYTHONPATH=$PYTHONPATH:/root/ros_ws/src/armor/armor_py_api/scripts/armor_api/
 ```
-4. Download the 'cluedo_ontology.owl' file provided in this repository and place it in the '/root/Desktop/' directory. 
+4. Download the 'cluedo_ontology.owl' file provided in this repository and place it in your system '/root/Desktop/' directory. 
 
 ## Running the Project Simulation:
 
@@ -44,11 +43,11 @@ roscore&
 ```
 rosrun armor execute it.emarolab.armor.ARMORMainService
 ```
-3. Open the new tab in command terminal and run the ROS package launch file to start the simulation by using the following command: 
+3. Open the new tab in command terminal and run the ROS launch file to start the simulation by using the following command: 
 ```
 roslaunch erl2 assignment.launch
 ```
-After running the command wait for the system to load all the files. Once all nodes are loaded open another terminal and execute assignment_services launch file by running the following command:
+After running the command wait for the system to load all the files. Once all nodes are loaded open another terminal and execute 'assignment_services' launch file by running the following command:
 ```
 roslaunch erl2 assignment_services.launch
 ```
@@ -59,7 +58,7 @@ rosrun erl2 rosplan_start.sh
 
 ## Software Architecture of the Project:
 
-The project architecture based on the following main nodes. 
+The project architecture is based on the following main nodes. 
 
 1. simulation.cpp
 2. my_action.cpp
@@ -69,6 +68,8 @@ The project architecture based on the following main nodes.
 6. move_arm.cpp
 7. hint_loader.py
 8. set_orientation.py
+
+
 
 ## Project Simulation Demo:
 
