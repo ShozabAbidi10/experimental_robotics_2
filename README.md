@@ -60,23 +60,23 @@ rosrun erl2 rosplan_start.sh
 
 The project architecture is based on the following main nodes. 
 
-###1. simulation.cpp
+1. simulation.cpp
 
 The simulation node implements the 'oracle' and visualization of the four hints position. The oracle is implemented in a way that it randomly generate hints of IDs 0 to 5 which may and may not generate inconsistent hypothesis. It also randomly generates a trustable ID which generates the consistent and correct hypothesis. This trustable ID can be requested from the 'oracle_solution' service that is also initialized in this node. The generated hints by this node are published in '/oracle_hint' topic.
 
-###2. my_action.cpp
+2. my_action.cpp
 
 This node implements an action client which work as a call function for the 'goto_waypoint' action in PDDL domain file. Hence, working as a low-level controller for the PDDL action abstraction. Upon call it request the robot in the Gazebo simulation to visit all waypoints (wp1,wp2,wp3,wp4). When the robot reached a waypoint location then this node call the service 'request_set_orientation' to set robot in appropiate orientation to move its arm suitably. Once this is done then robot request the 'request_move_arm' service to move its arm. After this it calls the '/request_hint_collector' service to collect the hints. If hint(s) collected successfully then the service returns 'true' and robot continue visiting other waypoints. 
 
-###3. hint_collector.cpp 
+3. hint_collector.cpp 
 
 This node provides the '/request_hint_collector' service which collects and store the hints from the '/oracle_hint' topic as they are being published. Once three hints are collected, it checks their consistency and load them in the 'ARMOR' ontology knowlegde base. It start the ontology reasoner, and check if the deduced hypothesis is complete and correct. If the hypothesis is inconsistent, incomplete or incorrect then it return 'false' otherwise it return 'true'.
 
-###4. replan.cpp
+4. replan.cpp
 
 This node provides the '/request_replan' service which upon request signal the 'replan_sub' node to start the replanning process by publishing a string message "replan" in the topic 'replan'.
 
-###5. replan_sub.cpp
+5. replan_sub.cpp
 
 This node initializes a subscriber for '/replan' topic. The callback funtion of this subscriber execute the 'rosplan_start.sh' bash file and starts the replanning. The bash file execute the following services which are the part of replanning loop. 
 
@@ -85,17 +85,17 @@ This node initializes a subscriber for '/replan' topic. The callback funtion of 
 * /rosplan_parsing_interface/parse_plan
 * /rosplan_plan_dispatcher/dispatch_plan 
 
-###6. move_arm.cpp
+6. move_arm.cpp
 
 This node plans and executes robot's arm motion using ROS Moveit library. It initializes a service through which a client can request to move robot arm's end-effector to a desired point in Gazebo environment.
 
-###7. hint_loader.py
+7. hint_loader.py
 
 This node waits for 'hint_loader_service' service's request from the 'hintcollector' node. Based on the request recieved, it loads the hint in the ARMOR reasonser, start the reasoner to deduced a hypotheses based on the previously loaded hints and request ARMOR reasoner for the list of 'COMPLETE' hypotheses. If the recently deduced hypothesis is 'COMPLETE' then it checks its 'CORRECTNESS' and return the appropiate response to the 'hintcollector' node. 
 
-###8. set_orientation.py
+8. set_orientation.py
 
-This node recieves the desired orientation goal coordinate as a '/request_set_orientation' service request from the 'my_action' node. Based on the recieved goal coordinates it computes the required angular velocity of the robot to reach the desired orientation and then publishes it in 'cmd_vel' topic.
+This node recieves the desired orientation goal coordinate as a '/request_set_orientation' service's request from the 'my_action' node. Based on the recieved goal coordinates it computes the required angular velocity of the robot to reach the desired orientation and then publishes it in 'cmd_vel' topic.
 
 ## Project Simulation Demo:
 
